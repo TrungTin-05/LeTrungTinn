@@ -1,46 +1,65 @@
-const sidebarToggleBtns = document.querySelectorAll(".sidebar-toggle");
-const sidebar = document.querySelector(".sidebar");
-const searchForm = document.querySelector(".search-form");
-const themeToggleBtn = document.querySelector(".theme-toggle");
-const themeIcon = themeToggleBtn.querySelector(".theme-icon");
-const menuLinks = document.querySelectorAll(".menu-link");
+const cards = document.querySelectorAll(".card");
 
-// Updates the theme icon based on current theme and sidebar state
-const updateThemeIcon = () => {
-  const isDark = document.body.classList.contains("dark-theme");
-  themeIcon.textContent = sidebar.classList.contains("collapsed") ? (isDark ? "light_mode" : "dark_mode") : "dark_mode";
-};
+let matched = 0;
+let cardOne, cardTwo;
+let disableDeck = false;
 
-// Apply dark theme if saved or system prefers, then update icon
-const savedTheme = localStorage.getItem("theme");
-const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-const shouldUseDarkTheme = savedTheme === "dark" || (!savedTheme && systemPrefersDark);
+function flipCard({target: clickedCard}) {
+    if(cardOne !== clickedCard && !disableDeck) {
+        clickedCard.classList.add("flip");
+        if(!cardOne) {
+            return cardOne = clickedCard;
+        }
+        cardTwo = clickedCard;
+        disableDeck = true;
+        let cardOneImg = cardOne.querySelector(".back-view img").src,
+        cardTwoImg = cardTwo.querySelector(".back-view img").src;
+        matchCards(cardOneImg, cardTwoImg);
+    }
+}
 
-document.body.classList.toggle("dark-theme", shouldUseDarkTheme);
-updateThemeIcon();
+function matchCards(img1, img2) {
+    if(img1 === img2) {
+        matched++;
+        if(matched == 8) {
+            setTimeout(() => {
+                return shuffleCard();
+            }, 1000);
+        }
+        cardOne.removeEventListener("click", flipCard);
+        cardTwo.removeEventListener("click", flipCard);
+        cardOne = cardTwo = "";
+        return disableDeck = false;
+    }
+    setTimeout(() => {
+        cardOne.classList.add("shake");
+        cardTwo.classList.add("shake");
+    }, 400);
 
-// Toggle between themes on theme button click
-themeToggleBtn.addEventListener("click", () => {
-  const isDark = document.body.classList.toggle("dark-theme");
-  localStorage.setItem("theme", isDark ? "dark" : "light");
-  updateThemeIcon();
+    setTimeout(() => {
+        cardOne.classList.remove("shake", "flip");
+        cardTwo.classList.remove("shake", "flip");
+        cardOne = cardTwo = "";
+        disableDeck = false;
+    }, 1200);
+}
+
+function shuffleCard() {
+    matched = 0;
+    disableDeck = false;
+    cardOne = cardTwo = "";
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8];
+    arr.sort(() => Math.random() > 0.5 ? 1 : -1);
+    cards.forEach((card, i) => {
+        card.classList.remove("flip");
+        let imgTag = card.querySelector(".back-view img");
+        imgTag.src = `images/img-${arr[i]}.png`;
+        card.addEventListener("click", flipCard);
+    });
+}
+
+shuffleCard();
+    
+cards.forEach(card => {
+    card.addEventListener("click", flipCard);
 });
-
-// Toggle sidebar collapsed state on buttons click
-sidebarToggleBtns.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    sidebar.classList.toggle("collapsed");
-    updateThemeIcon();
-  });
-});
-
-// Expand the sidebar when the search form is clicked
-searchForm.addEventListener("click", () => {
-  if (sidebar.classList.contains("collapsed")) {
-    sidebar.classList.remove("collapsed");
-    searchForm.querySelector("input").focus();
-  }
-});
-
-// Expand sidebar by default on large screens
-if (window.innerWidth > 768) sidebar.classList.remove("collapsed");
