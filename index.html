@@ -46,14 +46,56 @@
   <footer>
     © 2025 Website Học Toán - Thiết kế dành cho học sinh tiểu học
   </footer>
+  
+ <!-- Đăng nhập -->
+  <div id="loginForm" class="form-popup">
+    <h3>Đăng nhập</h3>
+    <select>
+      <option>Học sinh</option>
+      <option>Phụ huynh</option>
+      <option>Giáo viên</option>
+    </select>
+    <input type="text" placeholder="Tên đăng nhập" />
+    <input type="password" placeholder="Mật khẩu" />
+    <button>Đăng nhập</button>
+    <button class="close-btn" onclick="closeForm('loginForm')">Hủy</button>
+  </div>
+
+  <!-- Đăng ký -->
+  <div id="registerForm" class="form-popup">
+    <h3>Đăng ký</h3>
+    <select>
+      <option>Học sinh</option>
+      <option>Phụ huynh</option>
+      <option>Giáo viên</option>
+    </select>
+    <input type="text" placeholder="Họ và tên" />
+    <input type="text" placeholder="Tên đăng nhập" />
+    <input type="password" placeholder="Mật khẩu" />
+    <input type="password" placeholder="Nhập lại mật khẩu" />
+    <button>Đăng ký</button>
+    <button class="close-btn" onclick="closeForm('registerForm')">Hủy</button>
+  </div>
 
   <script>
     function showSection(sectionId) {
-      // Ẩn tất cả iframe và phần home
       document.querySelectorAll('iframe, .welcome').forEach(el => el.style.display = 'none');
-      // Hiện phần được chọn
       const section = document.getElementById(sectionId);
       if (section) section.style.display = 'block';
+    }
+
+    function openForm(formType) {
+      if (formType === 'login') {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('registerForm').style.display = 'none';
+      } else {
+        document.getElementById('registerForm').style.display = 'block';
+        document.getElementById('loginForm').style.display = 'none';
+      }
+    }
+
+    function closeForm(formId) {
+      document.getElementById(formId).style.display = 'none';
     }
 
     // Mặc định hiển thị trang chủ
@@ -62,3 +104,4 @@
 
 </body>
 </html>
+
