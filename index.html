@@ -5,22 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Website Học Toán Tương Tác</title>
   <link rel="stylesheet" href="style.css" />
-  <style>
-    iframe {
-      width: 100%;
-      height: 600px;
-      border: none;
-      display: none;
-    }
-    iframe.active {
-      display: block;
-    }
-  </style>
 </head>
 <body>
 
   <header>
     🌟 Website Học Toán Tương Tác 🌟
+    <div class="auth-buttons">
+      <button onclick="openForm('login')">Đăng nhập</button>
+      <button onclick="openForm('register')">Đăng ký</button>
+    </div>
   </header>
 
   <nav>
@@ -46,8 +39,8 @@
   <footer>
     © 2025 Website Học Toán - Thiết kế dành cho học sinh tiểu học
   </footer>
-  
- <!-- Đăng nhập -->
+
+  <!-- Đăng nhập -->
   <div id="loginForm" class="form-popup">
     <h3>Đăng nhập</h3>
     <select>
@@ -98,10 +91,8 @@
       document.getElementById(formId).style.display = 'none';
     }
 
-    // Mặc định hiển thị trang chủ
     showSection('home');
   </script>
 
 </body>
 </html>
-
