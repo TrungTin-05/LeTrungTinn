@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Website Học Toán Tương Tác</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      display: none;
+    }
+    iframe.active {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -13,23 +24,41 @@
   </header>
 
   <nav>
-    <a href="#">Trang chủ</a>
-    <a href="#">Bài học</a>
-    <a href="#">Trò chơi</a>
-    <a href="#">Kiểm tra</a>
-    <a href="#">Hồ sơ</a>
+    <a href="#" onclick="showSection('home')">Trang chủ</a>
+    <a href="#" onclick="showSection('baihoc')">Bài học</a>
+    <a href="#" onclick="showSection('trochoi')">Trò chơi</a>
+    <a href="#" onclick="showSection('kiemtra')">Kiểm tra</a>
+    <a href="#" onclick="showSection('hoso')">Hồ sơ</a>
   </nav>
 
   <main>
-    <div class="welcome">
+    <div id="home" class="welcome">
       <h2>Chào mừng đến với thế giới Toán học vui nhộn!</h2>
       <p>Trang web này giúp học sinh tiểu học học toán qua các bài học trực quan, trò chơi thú vị và bài kiểm tra tương tác. Hãy bắt đầu hành trình khám phá nhé! 🎓🧮</p>
     </div>
+
+    <iframe id="baihoc" src="baihoc.html"></iframe>
+    <iframe id="trochoi" src="trochoi.html"></iframe>
+    <iframe id="kiemtra" src="kiemtra.html"></iframe>
+    <iframe id="hoso" src="hoso.html"></iframe>
   </main>
 
   <footer>
     © 2025 Website Học Toán - Thiết kế dành cho học sinh tiểu học
   </footer>
+
+  <script>
+    function showSection(sectionId) {
+      // Ẩn tất cả iframe và phần home
+      document.querySelectorAll('iframe, .welcome').forEach(el => el.style.display = 'none');
+      // Hiện phần được chọn
+      const section = document.getElementById(sectionId);
+      if (section) section.style.display = 'block';
+    }
+
+    // Mặc định hiển thị trang chủ
+    showSection('home');
+  </script>
 
 </body>
 </html>
