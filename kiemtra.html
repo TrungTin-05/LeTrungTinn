@@ -1,13 +1,84 @@
-<main>
-  <div class="welcome">
-    <h2>📝 Bài kiểm tra</h2>
-    <p>Chọn một bài kiểm tra theo trình độ của bạn:</p>
-    <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
-      <li><a href="#">Kiểm tra lớp 1 – Cộng trừ cơ bản</a></li>
-      <li><a href="#">Kiểm tra lớp 2 – Nhân chia</a></li>
-      <li><a href="#">Kiểm tra lớp 3 – Phép tính có nhớ</a></li>
-      <li><a href="#">Kiểm tra lớp 4 – Phân số</a></li>
-      <li><a href="#">Kiểm tra tổng hợp lớp 5</a></li>
-    </ul>
-  </div>
-</main>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bài kiểm tra Toán</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f0f4f8; /* Nền nhẹ nhàng */
+    }
+  </style>
+</head>
+<body class="p-6">
+  <main class="container mx-auto">
+    <div class="text-center mb-10">
+      <h1 class="text-4xl font-bold text-teal-600 mb-2">
+        <span class="inline-block animate-bounce-slow">📝</span> Bài kiểm tra Toán
+      </h1>
+      <p class="text-gray-600 text-lg">Chọn một bài kiểm tra để đánh giá trình độ của bạn!</p>
+    </div>
+
+    <!-- Danh sách các bài kiểm tra dưới dạng card -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Kiểm tra lớp 1 -->
+      <a href="kiem-tra-lop1.html" target="_blank" class="block">
+        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center space-x-4 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">
+          <span class="text-4xl p-3 bg-cyan-100 rounded-full">⭐</span>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">Kiểm tra lớp 1</h3>
+            <p class="text-gray-500">Cộng trừ cơ bản</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Kiểm tra lớp 2 -->
+      <a href="kiem-tra-lop2.html" target="_blank" class="block">
+        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center space-x-4 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">
+          <span class="text-4xl p-3 bg-emerald-100 rounded-full">🚀</span>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">Kiểm tra lớp 2</h3>
+            <p class="text-gray-500">Nhân chia</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Kiểm tra lớp 3 -->
+      <a href="kiem-tra-lop3.html" target="_blank" class="block">
+        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center space-x-4 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">
+          <span class="text-4xl p-3 bg-indigo-100 rounded-full">🧠</span>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">Kiểm tra lớp 3</h3>
+            <p class="text-gray-500">Phép tính có nhớ</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Kiểm tra lớp 4 -->
+      <a href="kiem-tra-lop4.html" target="_blank" class="block">
+        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center space-x-4 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">
+          <span class="text-4xl p-3 bg-rose-100 rounded-full">📐</span>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">Kiểm tra lớp 4</h3>
+            <p class="text-gray-500">Phân số</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Kiểm tra lớp 5 -->
+      <a href="kiem-tra-lop5.html" target="_blank" class="block">
+        <div class="bg-white rounded-xl shadow-lg p-6 flex items-center space-x-4 transition-transform duration-300 transform hover:scale-105 hover:shadow-xl cursor-pointer">
+          <span class="text-4xl p-3 bg-amber-100 rounded-full">🔢</span>
+          <div>
+            <h3 class="text-xl font-bold text-gray-800">Kiểm tra tổng hợp lớp 5</h3>
+            <p class="text-gray-500">Toán tổng hợp</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
