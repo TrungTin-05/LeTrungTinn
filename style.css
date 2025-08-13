@@ -1,81 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 body {
+  font-family: 'Inter', sans-serif;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-image: url("images/bg-math-fun.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
+  padding-bottom: 50px; /* Thêm padding để footer không che nội dung */
 }
 
+/* CSS cho header, nav, main content của website */
 header {
-  background-color: #4CAF50;
+  background-color: #4A90E2;
   color: white;
-  padding: 15px;
+  padding: 20px;
   text-align: center;
   font-size: 24px;
-  position: relative;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-
-.login-button {
-  position: absolute;
-  right: 20px;
-  top: 15px;
-  padding: 8px 12px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
 nav {
+  background-color: #357ABD;
   display: flex;
   justify-content: center;
-  background-color: #f2f2f2;
   padding: 10px 0;
 }
-
 nav a {
-  margin: 0 15px;
+  color: white;
   text-decoration: none;
-  color: black;
+  padding: 10px 20px;
   font-weight: bold;
+  transition: background-color 0.3s;
 }
-
+nav a:hover {
+  background-color: #2b6a9a;
+}
 main {
-  background-color: rgba(255, 255, 255, 0.9);
-  margin: 30px;
   padding: 20px;
-  border-radius: 10px;
-  text-align: center;
 }
-
-footer {
-  text-align: center;
-  padding: 15px;
-  background-color: #eee;
-  margin-top: 30px;
-}
-.form-popup {
-  display: none; 
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px solid #666;
-  background-color: #fff;
-  z-index: 1000;
-  padding: 20px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-}
-.close-btn {
-  margin-left: 10px;
-}
-iframe {
+.main-section {
   width: 100%;
-  height: 600px; /* hoặc auto nếu muốn tự điều chỉnh */
+  height: 60vh;
+  border: 1px solid #ccc;
   display: none;
+}
+.main-section.active {
+  display: block;
+}
+.welcome {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f0f8ff;
+  border-radius: 12px;
   border: none;
 }
+.auth-buttons button {
+  background-color: #f7f7f7;
+  color: #333;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.auth-buttons button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
 
-
-
-
+/* CSS cho popup form */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.popup-form {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  width: 320px;
+  max-width: 90%;
+  animation: fadeIn 0.3s ease;
+  position: relative;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.popup-form .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #555;
+}
+.popup-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+.popup-form input,
+.popup-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.popup-form input:focus,
+.popup-form select:focus {
+  border-color: #4A90E2;
+  box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
+}
+.popup-form .btn-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.popup-form .btn {
+  width: 48%;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+.popup-form .btn-primary {
+  background: #4A90E2;
+  color: white;
+}
+.popup-form .btn-primary:hover {
+  background: #357ABD;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.popup-form .btn-secondary {
+  background: #ccc;
+  color: #333;
+}
+.popup-form .btn-secondary:hover {
+  background: #999;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.popup-form .toggle-btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.popup-form .toggle-btn {
+  padding: 8px 16px;
+  border: none;
+  background: #f0f0f0;
+  color: #555;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+.popup-form .toggle-btn.active {
+  background: #4A90E2;
+  color: white;
+}
+.error-message {
+  color: #e74c3c;
+  font-size: 13px;
+  text-align: center;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  display: none;
+}
