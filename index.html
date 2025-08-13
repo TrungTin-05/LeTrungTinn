@@ -2,107 +2,84 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Website Học Toán Tương Tác</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header>
     🌟 Website Học Toán Tương Tác 🌟
     <div class="auth-buttons">
-      <button onclick="openForm('login')">Đăng nhập</button>
-      <button onclick="openForm('register')">Đăng ký</button>
+      <button id="login-btn">Đăng nhập</button>
+      <button id="register-btn">Đăng ký</button>
     </div>
   </header>
 
   <nav>
-    <a href="#" onclick="showSection('home')">Trang chủ</a>
-    <a href="#" onclick="showSection('baihoc')">Bài học</a>
-    <a href="#" onclick="showSection('trochoi')">Trò chơi</a>
-    <a href="#" onclick="showSection('kiemtra')">Kiểm tra</a>
-    <a href="#" onclick="showSection('hoso')">Hồ sơ</a>
+    <a href="#" class="nav-link" data-section="home">Trang chủ</a>
+    <a href="#" class="nav-link" data-section="baihoc">Bài học</a>
+    <a href="#" class="nav-link" data-section="trochoi">Trò chơi</a>
+    <a href="#" class="nav-link" data-section="kiemtra">Kiểm tra</a>
+    <a href="#" class="nav-link" data-section="hoso">Hồ sơ</a>
   </nav>
 
   <main>
-    <div id="home" class="welcome">
+    <div id="home" class="welcome main-section active">
       <h2>Chào mừng đến với thế giới Toán học vui nhộn!</h2>
       <p>Trang web này giúp học sinh tiểu học học toán qua các bài học trực quan, trò chơi thú vị và bài kiểm tra tương tác. Hãy bắt đầu hành trình khám phá nhé! 🎓🧮</p>
     </div>
 
-    <iframe id="baihoc" src="baihoc.html"></iframe>
-    <iframe id="trochoi" src="trochoi.html"></iframe>
-    <iframe id="kiemtra" src="kiemtra.html"></iframe>
-    <iframe id="hoso" src="hoso.html"></iframe>
+    <iframe id="baihoc" src="baihoc.html" class="main-section"></iframe>
+    <iframe id="trochoi" src="trochoi.html" class="main-section"></iframe>
+    <iframe id="kiemtra" src="kiemtra.html" class="main-section"></iframe>
+    <iframe id="hoso" src="hoso.html" class="main-section"></iframe>
   </main>
 
   <footer style="text-align: center; padding: 10px; background-color: #f2f2f2; position: fixed; bottom: 0; width: 100%;">
     © 2025 Website Học Toán - Thiết kế dành cho học sinh tiểu học
   </footer>
 
-  <select name="role">
-  <option value="student">Học sinh</option>
-  <option value="parent">Phụ huynh</option>
-  <option value="teacher">Giáo viên</option>
-</select>
-<input type="text" name="username" placeholder="Tên đăng nhập" />
-<input type="password" name="password" placeholder="Mật khẩu" />
+  <!-- Lớp phủ nền và form popup -->
+  <div class="overlay" id="popupOverlay">
+    <div class="popup-form">
+      <button class="close-btn" id="close-popup-btn">&times;</button>
 
-  <!-- Đăng nhập -->
-  <div id="loginForm" class="form-popup">
-    <h3>Đăng nhập</h3>
-    <select>
-      <option>Học sinh</option>
-      <option>Phụ huynh</option>
-      <option>Giáo viên</option>
-    </select>
-    <input type="text" placeholder="Tên đăng nhập" />
-    <input type="password" placeholder="Mật khẩu" />
-    <button>Đăng nhập</button>
-    <button class="close-btn" onclick="closeForm('loginForm')">Hủy</button>
+      <!-- Các nút chuyển đổi Đăng nhập/Đăng ký -->
+      <div class="toggle-btn-group">
+        <button class="toggle-btn active" id="register-toggle">Đăng ký</button>
+        <button class="toggle-btn" id="login-toggle">Đăng nhập</button>
+      </div>
+
+      <h2 id="form-title">Đăng ký</h2>
+
+      <form id="auth-form">
+        <!-- Các trường chỉ dành cho Đăng ký -->
+        <select id="user-role-select">
+          <option>Học sinh</option>
+          <option>Giáo viên</option>
+        </select>
+        <div id="full-name-field">
+          <input type="text" id="full-name" placeholder="Họ và tên">
+        </div>
+        <div id="confirm-password-field">
+          <input type="password" id="confirm-password" placeholder="Nhập lại mật khẩu">
+        </div>
+        <!-- Các trường chung cho cả hai form -->
+        <input type="text" id="username" placeholder="Tên đăng nhập">
+        <input type="password" id="password" placeholder="Mật khẩu">
+        
+        <!-- Hiển thị thông báo lỗi -->
+        <p id="error-msg" class="error-message"></p>
+
+        <div class="btn-group">
+          <button type="submit" class="btn btn-primary" id="submit-btn">Đăng ký</button>
+          <button type="button" class="btn btn-secondary" id="cancel-popup-btn">Hủy</button>
+        </div>
+      </form>
+    </div>
   </div>
 
-  <!-- Đăng ký -->
-  <div id="registerForm" class="form-popup">
-    <h3>Đăng ký</h3>
-    <select>
-      <option>Học sinh</option>
-      <option>Phụ huynh</option>
-      <option>Giáo viên</option>
-    </select>
-    <input type="text" placeholder="Họ và tên" />
-    <input type="text" placeholder="Tên đăng nhập" />
-    <input type="password" placeholder="Mật khẩu" />
-    <input type="password" placeholder="Nhập lại mật khẩu" />
-    <button>Đăng ký</button>
-    <button class="close-btn" onclick="closeForm('registerForm')">Hủy</button>
-  </div>
-
-  <script>
-    function showSection(sectionId) {
-      document.querySelectorAll('iframe, .welcome').forEach(el => el.style.display = 'none');
-      const section = document.getElementById(sectionId);
-      if (section) section.style.display = 'block';
-    }
-
-    function openForm(formType) {
-      if (formType === 'login') {
-        document.getElementById('loginForm').style.display = 'block';
-        document.getElementById('registerForm').style.display = 'none';
-      } else {
-        document.getElementById('registerForm').style.display = 'block';
-        document.getElementById('loginForm').style.display = 'none';
-      }
-    }
-
-    function closeForm(formId) {
-      document.getElementById(formId).style.display = 'none';
-    }
-
-    showSection('home');
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
-
-
